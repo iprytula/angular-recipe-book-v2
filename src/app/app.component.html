@@ -1,0 +1,21 @@
+<mat-drawer-container>
+  <mat-drawer #drawer mode="side">
+    <nav class="sidenav">
+      <mat-nav-list>
+        @for (menuItem of sidenavMenu; track menuItem.id) {
+        <a mat-list-item class="router-link text-decoration-none" [routerLink]="menuItem.path"
+          routerLinkActive="router-link-active">{{ menuItem.name }}</a>
+        }
+      </mat-nav-list>
+    </nav>
+  </mat-drawer>
+
+  <div class="sidenav-content">
+    <app-header (toggleSidenavEvent)="drawer.toggle()"></app-header>
+    <main>
+      <div class="container mt-5">
+        <router-outlet></router-outlet>
+      </div>
+    </main>
+  </div>
+</mat-drawer-container>
