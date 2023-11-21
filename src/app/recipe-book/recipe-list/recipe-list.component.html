@@ -1,1 +1,12 @@
-<p>recipe-list works!</p>
+<div class="list-group">
+  <a *ngFor="let recipe of recipes" [routerLink]="[recipe.id]" routerLinkActive="bg-light" class="list-group-item list-group-item-action">
+    <div class="row align-items-center">
+      <div class="col-2">
+        <img class="recipe-img" [src]="recipe.photoUrl" [alt]="recipe.name">
+      </div>
+      <div class="col-10">
+        <h3 class="mb-1">{{ recipe.name }}</h3>
+      </div>
+    </div>
+  </a>
+</div>

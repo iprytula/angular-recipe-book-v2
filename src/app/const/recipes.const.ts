@@ -1,8 +1,9 @@
-const recipes = [
+export const recipes = [
   {
     id: 1,
     name: "Spaghetti Carbonara",
-    photoUrl: "https://www.foodandwine.com/thmb/1ZX-xU4rye8ws10LELAAPji6lWs=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/hd-fw200304_101spaghetti-3e165ba8cd44491fa3357b6ba944bdbe.jpg",
+    photoUrl: "https://images.aws.nestle.recipes/resized/2020_04_03T13_52_30_image_708_600.ashx",
+    description: "Classic Italian pasta dish with eggs, pancetta, and Parmigiano-Reggiano cheese in a creamy sauce.",
     ingredients: [
       {
         id: 1,
@@ -14,7 +15,7 @@ const recipes = [
         id: 2,
         name: "Eggs",
         amount: 2,
-        units: ""
+        units: "piece"
       },
       {
         id: 3,
@@ -46,12 +47,13 @@ const recipes = [
     id: 2,
     name: "Pizza Margherita",
     photoUrl: "https://cdn.aniagotuje.com/pictures/articles/2022/02/24425399-v-1500x1500.jpg",
+    description: "Classic Neapolitan pizza with tomato sauce, fresh mozzarella, basil leaves, and a thin crust.",
     ingredients: [
       {
         id: 1,
         name: "Pizza dough",
         amount: 1,
-        units: ""
+        units: "piece"
       },
       {
         id: 2,
@@ -69,7 +71,7 @@ const recipes = [
         id: 4,
         name: "Fresh basil leaves",
         amount: 10,
-        units: ""
+        units: "piece"
       },
       {
         id: 5,
@@ -89,6 +91,7 @@ const recipes = [
     id: 3,
     name: "Tacos al Pastor",
     photoUrl: "https://www.jocooks.com/wp-content/uploads/2022/04/tacos-al-pastor-feature-1.jpg",
+    description: "Mexican street tacos featuring marinated pork, pineapple, and traditional spices, served on corn tortillas.",
     ingredients: [
       {
         id: 1,
@@ -106,19 +109,19 @@ const recipes = [
         id: 3,
         name: "Dried guajillo chilies",
         amount: 6,
-        units: ""
+        units: "piece"
       },
       {
         id: 4,
         name: "Dried ancho chilies",
         amount: 4,
-        units: ""
+        units: "piece"
       },
       {
         id: 5,
         name: "Garlic cloves",
         amount: 6,
-        units: ""
+        units: "piece"
       },
       {
         id: 6,
@@ -142,7 +145,7 @@ const recipes = [
         id: 9,
         name: "Corn tortillas",
         amount: 12,
-        units: ""
+        units: "piece"
       },
       {
         id: 10,
@@ -162,6 +165,7 @@ const recipes = [
     id: 4,
     name: "Pad Thai",
     photoUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Phat_Thai_kung_Chang_Khien_street_stall.jpg/1200px-Phat_Thai_kung_Chang_Khien_street_stall.jpg",
+    description: "Popular Thai stir-fried noodle dish with tofu, shrimp, peanuts, and lime",
     ingredients: [
       {
         id: 1,
@@ -179,7 +183,7 @@ const recipes = [
         id: 3,
         name: "Eggs",
         amount: 2,
-        units: ""
+        units: "piece"
       },
       {
         id: 4,
@@ -233,14 +237,15 @@ const recipes = [
         id: 12,
         name: "Lime wedges",
         amount: 4,
-        units: ""
+        units: "piece"
       }
     ]
   },
   {
     id: 5,
     name: "Chicken Tikka Masala",
-    photoUrl: "https://www.seriouseats.com/thmb/DbQHUK2yNCALBnZE-H1M2AKLkok=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/chicken-tikka-masala-for-the-grill-recipe-hero-2_1-cb493f49e30140efbffec162d5f2d1d7.JPG",
+    photoUrl: "https://www.familyfoodonthetable.com/wp-content/uploads/2020/07/Easy-chicken-tikka-masala-9.jpg",
+    description: "Creamy and flavorful Indian chicken dish with a blend of aromatic spices.",
     ingredients: [
       {
         id: 1,
@@ -314,6 +319,7 @@ const recipes = [
     id: 8,
     name: "Lasagna",
     photoUrl: "https://thecozycook.com/wp-content/uploads/2022/04/Lasagna-Recipe-f.jpg",
+    description: "Hearty layered Italian casserole with pasta, beef, marinara sauce, and a cheese trio.",
     ingredients: [
       {
         id: 1,
@@ -381,6 +387,7 @@ const recipes = [
     id: 9,
     name: "Steak Frites",
     photoUrl: "https://upload.wikimedia.org/wikipedia/commons/9/9a/Reel_and_Brand_-_September_2021_-_Sarah_Stierch_05.jpg",
+    description: "French bistro classic featuring steak, crispy fries, and a flavorful herb butter.",
     ingredients: [
       {
         id: 1,
@@ -445,10 +452,11 @@ const recipes = [
     ]
   },
   {
-    "id": 10,
-    "name": "Sushi",
-    "photoUrl": "https://i1.wp.com/gotujemywdomu.pl/wp-content/uploads/2021/01/DSC0572-2x-scaled.jpg?fit=1300%2C864&ssl=1",
-    "ingredients": [
+    id: 10,
+    name: "Sushi",
+    photoUrl: "https://i1.wp.com/gotujemywdomu.pl/wp-content/uploads/2021/01/DSC0572-2x-scaled.jpg?fit=1300%2C864&ssl=1",
+    description: "Delicious and elegant Japanese dish with seasoned rice, fresh fish, and seaweed.",
+    ingredients: [
       {
         "id": 1,
         "name": "Sushi rice",
