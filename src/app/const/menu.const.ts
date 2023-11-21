@@ -1,4 +1,4 @@
-import { MenuItem } from "../interfaces/menu-item.interface";
+import { MenuItem } from "../types/menu-item.type";
 
 export const menu: MenuItem[] = [
   { name: 'Recipes', path: '/recipes', id: 1 },
