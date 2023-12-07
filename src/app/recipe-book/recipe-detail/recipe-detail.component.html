@@ -1,9 +1,28 @@
 @if (recipe) {
   <mat-card>
-    <mat-card-header>
+    <mat-card-header class="position-relative">
       <mat-card-title class="mb-2">{{ recipe.name }}</mat-card-title>
+      <button class="recipe-actions-button" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Recipe actions">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>
+            add_shopping_cart
+          </mat-icon>
+          <span>To Shopping List</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>edit_note</mat-icon>
+          <span>Edit Recipe</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>delete</mat-icon>
+          <span>Delete recipe</span>
+        </button>
+      </mat-menu>
     </mat-card-header>
-    <img mat-card-image [src]="recipe.photoUrl" [alt]="recipe.name">
+    <img class="card-image" mat-card-image [src]="recipe.photoUrl" [alt]="recipe.name">
     <mat-card-content>
       <p class="mt-4">{{ recipe.description }}</p>
     </mat-card-content>

@@ -5,23 +5,27 @@ import { ActivatedRoute } from '@angular/router';
 import { recipes } from '../../const/recipes.const';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-recipe-detail',
   standalone: true,
-  imports: [CommonModule, MatCardModule, MatButtonModule],
+  imports: [CommonModule, MatCardModule, MatButtonModule, MatIconModule, MatMenuModule],
   templateUrl: './recipe-detail.component.html',
   styleUrl: './recipe-detail.component.scss'
 })
 export class RecipeDetailComponent {
 
   recipe: Recipe | null = null;
+  paramsSubscription: Subscription | null = null;
 
   constructor( private route: ActivatedRoute ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      if (params['id']) {
+    this.paramsSubscription = this.route.params.subscribe(params => {
+      if (params?.['id']) {
         this.recipe = this.getRecipeById(+params['id']);
       }
     });
@@ -30,6 +34,10 @@ export class RecipeDetailComponent {
   getRecipeById(id: number): Recipe | null {
     const recipe = recipes.find(recipe => recipe.id === id)
     return recipe || null;
+  }
+
+  ngOnDestroy(): void {
+    this.paramsSubscription?.unsubscribe();
   }
 
 }

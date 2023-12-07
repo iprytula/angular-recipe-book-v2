@@ -1,12 +1,9 @@
-<div class="list-group">
-  <a *ngFor="let recipe of recipes" [routerLink]="[recipe.id]" routerLinkActive="bg-light" class="list-group-item list-group-item-action">
-    <div class="row align-items-center">
-      <div class="col-2">
-        <img class="recipe-img" [src]="recipe.photoUrl" [alt]="recipe.name">
-      </div>
-      <div class="col-10">
-        <h3 class="mb-1">{{ recipe.name }}</h3>
-      </div>
-    </div>
+<mat-list>
+  @for (recipe of recipes; track recipe) {
+  <a mat-list-item class="router-link" [routerLink]="[recipe.id]" routerLinkActive="bg-light">
+    <img matListItemAvatar class="mt-3" [src]="recipe.photoUrl" [alt]="recipe.name">
+    <h3 matListItemTitle>{{ recipe.name }}</h3>
+    <span matListItemLine>{{ recipe.description }}</span>
   </a>
-</div>
+  }
+</mat-list>
