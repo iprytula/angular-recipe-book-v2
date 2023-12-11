@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
@@ -15,7 +15,7 @@ import { MatListModule } from '@angular/material/list';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'angular-recipe-book-v2';
   sidenavMenu: MenuItem[] = menu;
   @ViewChild('drawer', { static: true }) drawer!: MatSidenav;
