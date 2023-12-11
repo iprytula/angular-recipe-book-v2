@@ -2,7 +2,7 @@
   "name": "recipe-book",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "prefix": "recipe-book",
+  "prefix": "app",
   "sourceRoot": "apps/recipe-book/src",
   "tags": [],
   "targets": {
