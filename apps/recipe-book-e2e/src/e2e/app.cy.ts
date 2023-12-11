@@ -1,6 +1,6 @@
 import { getGreeting } from '../support/app.po';
 
-describe('angular-recipe-book-v2-e2e', () => {
+describe('recipe-book-e2e', () => {
   beforeEach(() => cy.visit('/'));
 
   it('should display welcome message', () => {

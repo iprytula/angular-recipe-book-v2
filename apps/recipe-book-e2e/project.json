@@ -1,22 +1,22 @@
 {
-  "name": "angular-recipe-book-v2-e2e",
+  "name": "recipe-book-e2e",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "sourceRoot": "apps/angular-recipe-book-v2-e2e/src",
+  "sourceRoot": "apps/recipe-book-e2e/src",
   "targets": {
     "e2e": {
       "executor": "@nx/cypress:cypress",
       "options": {
-        "cypressConfig": "apps/angular-recipe-book-v2-e2e/cypress.config.ts",
+        "cypressConfig": "apps/recipe-book-e2e/cypress.config.ts",
         "testingType": "e2e",
-        "devServerTarget": "angular-recipe-book-v2:serve:development"
+        "devServerTarget": "recipe-book:serve:development"
       },
       "configurations": {
         "production": {
-          "devServerTarget": "angular-recipe-book-v2:serve:production"
+          "devServerTarget": "recipe-book:serve:production"
         },
         "ci": {
-          "devServerTarget": "angular-recipe-book-v2:serve-static"
+          "devServerTarget": "recipe-book:serve-static"
         }
       }
     },
@@ -26,5 +26,5 @@
     }
   },
   "tags": [],
-  "implicitDependencies": ["angular-recipe-book-v2"]
+  "implicitDependencies": ["recipe-book"]
 }

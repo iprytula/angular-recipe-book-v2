@@ -1,9 +1,9 @@
 /* eslint-disable */
 export default {
-  displayName: 'angular-recipe-book-v2',
+  displayName: 'recipe-book',
   preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  coverageDirectory: '../../coverage/apps/angular-recipe-book-v2',
+  coverageDirectory: '../../coverage/apps/recipe-book',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',
