@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Recipe } from '../../../types/recipe.type';
 import { RecipeListComponent } from "../recipe-list/recipe-list.component";
 import { RecipeDetailComponent } from "../recipe-detail/recipe-detail.component";
 import { RouterModule } from '@angular/router';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { RecipesService } from '../../../services/recipes.service';
 
 @Component({
   selector: 'app-recipe-book',
@@ -15,12 +15,17 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     CommonModule,
     RecipeListComponent,
     RecipeDetailComponent,
-    RouterModule,
-    HttpClientModule,
+    RouterModule
   ],
 })
-export class RecipeBookComponent {
+export class RecipeBookComponent implements OnInit {
   bookRecipes: Recipe[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private recipeService: RecipesService) {}
+
+  ngOnInit(): void {
+    this.recipeService.getRecipes().subscribe(response => {
+      console.log(response);
+    });
+  }
 }
