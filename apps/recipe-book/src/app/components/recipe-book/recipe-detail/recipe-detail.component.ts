@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Recipe } from '../../types/recipe.type';
+import { Recipe } from '../../../types/recipe.type';
 import { ActivatedRoute } from '@angular/router';
-import { recipes } from '../../const/recipes.const';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -23,18 +22,18 @@ export class RecipeDetailComponent {
 
   constructor( private route: ActivatedRoute ) {}
 
-  ngOnInit(): void {
-    this.paramsSubscription = this.route.params.subscribe(params => {
-      if (params?.['id']) {
-        this.recipe = this.getRecipeById(+params['id']);
-      }
-    });
-  }
+  // ngOnInit(): void {
+  //   this.paramsSubscription = this.route.params.subscribe(params => {
+  //     if (params?.['id']) {
+  //       this.recipe = this.getRecipeById(+params['id']);
+  //     }
+  //   });
+  // }
 
-  getRecipeById(id: number): Recipe | null {
-    const recipe = recipes.find(recipe => recipe.id === id)
-    return recipe || null;
-  }
+  // getRecipeById(id: number): Recipe | null {
+  //   const recipe = recipes.find(recipe => recipe.id === id)
+  //   return recipe || null;
+  // }
 
   ngOnDestroy(): void {
     this.paramsSubscription?.unsubscribe();

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Recipe } from '../../types/recipe.type';
-import { recipes } from '../../const/recipes.const';
+import { Recipe } from '../../../types/recipe.type';
 import { RecipeListComponent } from "../recipe-list/recipe-list.component";
 import { RecipeDetailComponent } from "../recipe-detail/recipe-detail.component";
 import { RouterModule } from '@angular/router';
@@ -21,12 +20,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
   ],
 })
 export class RecipeBookComponent {
-  bookRecipes: Recipe[] = recipes;
+  bookRecipes: Recipe[] = [];
 
   constructor(private http: HttpClient) {}
-
-  onFetchRecipes() {
-    this.http.get('https://recipe-book-4f550-default-rtdb.europe-west1.firebasedatabase.app/recipes.json')
-    .subscribe(response => console.log(response));
-  }
 }

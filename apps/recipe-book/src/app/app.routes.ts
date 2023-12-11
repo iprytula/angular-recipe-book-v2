@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
-import { RecipeBookComponent } from './recipe-book/recipe-book/recipe-book.component';
-import { RecipeDetailComponent } from './recipe-book/recipe-detail/recipe-detail.component';
-import { RecipeDetailPlaceholderComponent } from './recipe-book/recipe-detail-placeholder/recipe-detail-placeholder.component';
+import { RecipeBookComponent } from './components/recipe-book/recipe-book/recipe-book.component';
+import { RecipeDetailComponent } from './components/recipe-book/recipe-detail/recipe-detail.component';
+import { RecipeDetailPlaceholderComponent } from './components/recipe-book/recipe-detail-placeholder/recipe-detail-placeholder.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/recipes', pathMatch: 'full' },
@@ -12,7 +12,7 @@ export const routes: Routes = [
     ]
   },
   {
-    path: 'shopping-list', loadComponent: () => import('./shopping-list/shopping-list/shopping-list.component')
+    path: 'shopping-list', loadComponent: () => import('./components/shopping-list/shopping-list/shopping-list.component')
       .then(c => c.ShoppingListComponent)
   }
 ];
