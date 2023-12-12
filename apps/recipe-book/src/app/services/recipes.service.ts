@@ -1,14 +1,29 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { Recipe } from '../types/recipe.type';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RecipesService {
-  constructor(private http: HttpClient) {}
+  baseUrl = 'https://recipe-book-4f550-default-rtdb.europe-west1.firebasedatabase.app';
 
-  getRecipes(): Observable<unknown> {
-    return this.http.get('https://recipe-book-4f550-default-rtdb.europe-west1.firebasedatabase.app/recipes.json')
+  constructor(private http: HttpClient) { }
+
+  getRecipes(): Observable<Recipe[]> {
+    const recipesUrl = this.baseUrl + '/recipes.json';
+
+    return this.http.get<{ [key: string]: Recipe }[]>(recipesUrl)
+      .pipe(
+        map(
+          response => {
+            const recipesObj = Object.values(response)[0];
+            const recipesArr = Object.values(recipesObj);
+
+            return recipesArr;
+          }
+        )
+      )
   }
 }
