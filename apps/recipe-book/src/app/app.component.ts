@@ -20,7 +20,9 @@ export class AppComponent implements OnInit {
   sidenavMenu: MenuItem[] = menu;
   @ViewChild('drawer', { static: true }) drawer!: MatSidenav;
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.router.events.subscribe(() => {

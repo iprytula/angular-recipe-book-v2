@@ -1,10 +1,14 @@
 <div class="container mt-5">
+  @if (loading$ | async; as loading) {
+  <mat-spinner class="mx-auto"></mat-spinner>
+  } @else {
   <div class="row">
     <div class="col-md-3">
-      <app-recipe-list [recipes]="bookRecipes"></app-recipe-list>
+      <app-recipe-list [recipes]="recipes$ | async"></app-recipe-list>
     </div>
     <div class="col-md-9">
       <router-outlet></router-outlet>
     </div>
   </div>
+  }
 </div>

@@ -1,11 +1,13 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Recipe } from '../../../types/recipe.type';
 import { RecipeListComponent } from "../recipe-list/recipe-list.component";
 import { RecipeDetailComponent } from "../recipe-detail/recipe-detail.component";
 import { RouterModule } from '@angular/router';
-import { RecipesService } from '../../../services/recipes.service';
-import { Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
+import { selectLoading, selectRecipes } from '../../../store/selectors/recipes.selectors';
+import { Store } from '@ngrx/store';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-recipe-book',
@@ -16,22 +18,20 @@ import { Subscription } from 'rxjs';
     CommonModule,
     RecipeListComponent,
     RecipeDetailComponent,
-    RouterModule
+    RouterModule,
+    MatProgressSpinnerModule
   ],
 })
-export class RecipeBookComponent implements OnInit, OnDestroy {
-  bookRecipes: Recipe[] = [];
-  recipesSubscription: Subscription | null = null;
+export class RecipeBookComponent implements OnInit {
 
-  constructor(private recipeService: RecipesService) {}
+  recipes$!: Observable<Recipe[]>;
+  loading$!: Observable<boolean>;
+
+
+  constructor(private store: Store) {}
 
   ngOnInit(): void {
-    this.recipesSubscription = this.recipeService.getRecipes().subscribe(response => {
-      this.bookRecipes = [...response];
-    });
-  }
-
-  ngOnDestroy(): void {
-    this.recipesSubscription?.unsubscribe();
+    this.loading$ = this.store.select(selectLoading);
+    this.recipes$ = this.store.select(selectRecipes);
   }
 }

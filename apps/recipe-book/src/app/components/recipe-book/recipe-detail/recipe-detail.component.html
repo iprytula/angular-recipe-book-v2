@@ -1,4 +1,4 @@
-@if (recipe) {
+@if (recipe$ | async; as recipe) {
   <mat-card>
     <mat-card-header class="position-relative">
       <mat-card-title class="mb-2">{{ recipe.name }}</mat-card-title>

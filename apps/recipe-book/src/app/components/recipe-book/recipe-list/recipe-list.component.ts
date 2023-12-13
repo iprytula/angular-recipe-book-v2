@@ -12,5 +12,5 @@ import { RouterModule } from '@angular/router';
   styleUrl: './recipe-list.component.scss'
 })
 export class RecipeListComponent {
-  @Input() recipes: Recipe[] = [];
+  @Input() recipes: Recipe[] | null = [];
 }
