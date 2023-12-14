@@ -19,8 +19,8 @@ import { selectRecipeById } from '../../../store/selectors/recipes.selectors';
 })
 export class RecipeDetailComponent implements OnInit, OnDestroy {
 
-  recipe$: Observable<Recipe | undefined> | null = null;
-  paramsSubscription: Subscription | null = null;
+  recipe$!: Observable<Recipe | undefined>;
+  paramsSubscription$!: Subscription;
 
   constructor(
     private route: ActivatedRoute,
@@ -28,7 +28,7 @@ export class RecipeDetailComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.paramsSubscription = this.route.params.subscribe(params => {
+    this.paramsSubscription$ = this.route.params.subscribe(params => {
       const recipeId = params?.['id'];
       if (recipeId) {
         this.recipe$ = this.store.select(selectRecipeById(recipeId));
@@ -37,7 +37,7 @@ export class RecipeDetailComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.paramsSubscription?.unsubscribe();
+    this.paramsSubscription$?.unsubscribe();
   }
 
 }

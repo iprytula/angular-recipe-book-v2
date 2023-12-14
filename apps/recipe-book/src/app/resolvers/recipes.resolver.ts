@@ -8,7 +8,7 @@ import { selectRecipes, selectLoading } from '../store/selectors/recipes.selecto
 @Injectable({
   providedIn: 'root',
 })
-export class RecipeResolverService {
+export class RecipeResolver {
   constructor(private store: Store) {}
 
   resolve(): Observable<boolean> {

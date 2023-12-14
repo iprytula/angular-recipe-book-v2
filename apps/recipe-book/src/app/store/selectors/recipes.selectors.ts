@@ -19,3 +19,8 @@ export const selectRecipeById = (recipeId: number) => createSelector(
   selectRecipeEntities,
   entities => entities[recipeId]
 );
+
+export const selectRecipesError = createSelector(
+  selectRecipesState,
+  state => state.error
+)

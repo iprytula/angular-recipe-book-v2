@@ -1,7 +1,7 @@
 <div class="container mt-5">
   @if (loading$ | async; as loading) {
   <mat-spinner class="mx-auto"></mat-spinner>
-  } @else {
+  } @else if (!(error$ | async)) {
   <div class="row">
     <div class="col-md-3">
       <app-recipe-list [recipes]="recipes$ | async"></app-recipe-list>
@@ -10,5 +10,9 @@
       <router-outlet></router-outlet>
     </div>
   </div>
+  } @else {
+    <div class="alert alert-warning" role="alert">
+      <h2>Oops, something went wrong :( please try again later</h2>
+    </div>
   }
 </div>
