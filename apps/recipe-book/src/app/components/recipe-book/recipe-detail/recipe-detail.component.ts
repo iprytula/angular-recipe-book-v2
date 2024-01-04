@@ -9,11 +9,12 @@ import { MatMenuModule } from '@angular/material/menu';
 import { Observable, Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { selectRecipeById } from '../../../store/selectors/recipes.selectors';
+import { MatListModule } from '@angular/material/list';
 
 @Component({
   selector: 'app-recipe-detail',
   standalone: true,
-  imports: [CommonModule, MatCardModule, MatButtonModule, MatIconModule, MatMenuModule],
+  imports: [CommonModule, MatCardModule, MatButtonModule, MatIconModule, MatMenuModule, MatListModule],
   templateUrl: './recipe-detail.component.html',
   styleUrl: './recipe-detail.component.scss'
 })

@@ -7,8 +7,8 @@ import { Recipe } from '../types/recipe.type';
   providedIn: 'root'
 })
 export class RecipesService {
-  baseUrl = 'https://recipe-book-4f550-default-rtdb.europe-west1.firebasedatabase.app';
-  recipesUrl = this.baseUrl + '/recipes.json';
+  private baseUrl = 'https://recipe-book-4f550-default-rtdb.europe-west1.firebasedatabase.app';
+  private recipesUrl = this.baseUrl + '/recipes.json';
 
   constructor(private http: HttpClient) { }
 
@@ -21,7 +21,7 @@ export class RecipesService {
             return recipesArr;
           }
         )
-      )
+      );
   }
 
   addRecipe(recipe: Recipe): Observable<{ name: string }> {

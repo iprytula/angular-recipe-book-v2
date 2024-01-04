@@ -2,23 +2,23 @@ import { Injectable } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { catchError, filter, map, switchMap, take } from 'rxjs/operators';
-import { RecipesActions } from '../store/actions/recipes.actions';
-import { selectRecipes, selectLoading } from '../store/selectors/recipes.selectors';
+import { ShoppingListActions } from '../store/actions/shopping-list.actions';
+import { selectShoppingList, selectLoading } from '../store/selectors/shopping-list.selectors';
 
 @Injectable({
   providedIn: 'root',
 })
-export class RecipeResolver {
+export class ShoppingListResolver {
   constructor(private store: Store) {}
 
   resolve(): Observable<boolean> {
     return this.store.pipe(
-      select(selectRecipes),
+      select(selectShoppingList),
       take(1),
-      switchMap((recipes) => {
-        if (!recipes.length) {
-          this.store.dispatch(RecipesActions.load());
-          return this.waitForRecipesToLoad();
+      switchMap((shoppingList) => {
+        if (!shoppingList.length) {
+          this.store.dispatch(ShoppingListActions.load());
+          return this.waitForShoppingListToLoad();
         } else {
           return of(true);
         }
@@ -27,10 +27,10 @@ export class RecipeResolver {
     );
   }
 
-  private waitForRecipesToLoad(): Observable<boolean> {
+  private waitForShoppingListToLoad(): Observable<boolean> {
     return this.store.pipe(
       select(selectLoading),
-      filter((loading) => !loading), // Wait until loading is complete
+      filter((loading) => !loading),
       take(1),
       map(() => true)
     );

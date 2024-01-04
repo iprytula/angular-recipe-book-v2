@@ -4,6 +4,7 @@ import { RecipeDetailComponent } from './components/recipe-book/recipe-detail/re
 import { RecipeDetailPlaceholderComponent } from './components/recipe-book/recipe-detail-placeholder/recipe-detail-placeholder.component';
 import { RecipeResolver } from './resolvers/recipes.resolver';
 import { RecipeFormComponent } from './components/recipe-book/recipe-form/recipe-form.component';
+import { ShoppingListResolver } from './resolvers/shopping-list.resolver';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/recipes', pathMatch: 'full' },
@@ -16,6 +17,6 @@ export const routes: Routes = [
   },
   {
     path: 'shopping-list', loadComponent: () => import('./components/shopping-list/shopping-list/shopping-list.component')
-      .then(c => c.ShoppingListComponent)
+      .then(c => c.ShoppingListComponent), resolve: { shoppingList: ShoppingListResolver }
   }
 ];

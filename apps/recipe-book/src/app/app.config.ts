@@ -8,15 +8,19 @@ import { provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { recipesFeatureKey, recipesReducer } from './store/reducers/recipes.reducer';
+
 import { RecipesEffects } from './store/effects/recipes.effects';
+import { shoppingListFeatureKey, shoppingListReducer } from './store/reducers/shopping-list.reducer';
+import { ShoppingListEffects } from './store/effects/shopping-list.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideStore({
-      [recipesFeatureKey]: recipesReducer
+      [recipesFeatureKey]: recipesReducer,
+      [shoppingListFeatureKey]: shoppingListReducer
     }),
     provideStoreDevtools({ logOnly: !isDevMode() }),
-    provideEffects([ RecipesEffects ]),
+    provideEffects([ RecipesEffects, ShoppingListEffects ]),
     provideRouter(routes),
     provideAnimations(),
     provideHttpClient()
