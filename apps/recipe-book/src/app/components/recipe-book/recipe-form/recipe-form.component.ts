@@ -22,7 +22,7 @@ export class RecipeFormComponent implements OnInit {
 
   newRecipeForm!: FormGroup;
   recipes$!: Observable<Recipe[]>;
-  recipesLength: number = 0;
+  nextId: number = 0;
 
   constructor(private fb: FormBuilder, private store: Store) { }
 
@@ -63,11 +63,13 @@ export class RecipeFormComponent implements OnInit {
     const recipe = this.newRecipeForm.value;
 
     this.recipes$.pipe(take(1)).subscribe(recipes => {
-      const nextId = recipes.length + 1;
-      const recipeWithId = { ...recipe, id: nextId };
+      this.nextId = recipes.length + 1;
+      const recipeWithId = { ...recipe, id: this.nextId };
 
       this.store.dispatch(RecipesActions.addRecipe({ recipe: recipeWithId }));
-    })
+    });
+
+    this.nextId++;
   }
 
 }
