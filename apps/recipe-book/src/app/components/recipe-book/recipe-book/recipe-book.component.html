@@ -1,0 +1,23 @@
+<div class="container my-3">
+  @if (loading$ | async; as loading) {
+  <mat-spinner class="mx-auto"></mat-spinner>
+  } @else if (!(error$ | async)) {
+  <div class="row mb-2">
+    <div class="col">
+      <a routerLink="new" mat-raised-button color="primary" class="ms-3">Add New Recipe</a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <app-recipe-list [recipes]="recipes$ | async"></app-recipe-list>
+    </div>
+    <div class="col-md-9">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  } @else {
+    <div class="alert alert-warning" role="alert">
+      <h2>Oops, something went wrong :( please try again later</h2>
+    </div>
+  }
+</div>

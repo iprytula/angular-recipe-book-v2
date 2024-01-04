@@ -1,0 +1,64 @@
+<form [formGroup]="newRecipeForm">
+  <div class="row">
+    <mat-form-field>
+      <mat-label>Recipe Name</mat-label>
+      <input matInput formControlName="name" required>
+    </mat-form-field>
+  </div>
+  <div class="row">
+    <mat-form-field>
+      <mat-label>Photo URL</mat-label>
+      <input matInput formControlName="photoUrl" required>
+    </mat-form-field>
+  </div>
+  <div class="row">
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description"></textarea>
+    </mat-form-field>
+  </div>
+  <div class="row">
+    <div formArrayName="ingredients">
+      @for(ingredient of ingredientControls; let i = $index; track ingredient) {
+      <div [formGroupName]="i">
+        <div class="row">
+          <div class="col-5">
+            <div class="row">
+              <mat-form-field>
+                <mat-label>Ingredient {{ i + 1 }} Name</mat-label>
+                <input matInput formControlName="name" required>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="row">
+              <mat-form-field>
+                <mat-label>Amount</mat-label>
+                <input matInput type="number" matInput formControlName="amount" required>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="row">
+              <mat-form-field>
+                <mat-label>Units</mat-label>
+                <input matInput formControlName="units" required>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col-1 mt-1"><button mat-icon-button
+            (click)="removeIngredient(i)"><mat-icon>delete</mat-icon></button></div>
+        </div>
+      </div>
+      }
+    </div>
+    <div class="col">
+      <button mat-raised-button (click)="addIngredient()">Add Ingredient</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col mt-4">
+      <button (click)="onSubmit()" mat-raised-button>Submit</button>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,42 @@
+@if (recipe$ | async; as recipe) {
+<mat-card>
+  <mat-card-header class="position-relative">
+    <mat-card-title class="mb-2">{{ recipe.name }}</mat-card-title>
+    <div class="d-flex ms-auto">
+      <button mat-button (click)="toShoppingList(recipe.ingredients)">
+        <mat-icon>
+          add_shopping_cart
+        </mat-icon>
+        <span>To Shopping List</span>
+      </button>
+      <button mat-button>
+        <mat-icon>edit_note</mat-icon>
+        <span>Edit Recipe</span>
+      </button>
+      <button mat-button>
+        <mat-icon>delete</mat-icon>
+        <span>Delete recipe</span>
+      </button>
+    </div>
+  </mat-card-header>
+  <img class="card-image" mat-card-image [src]="recipe.photoUrl" [alt]="recipe.name">
+  <mat-card-content>
+    <p class="mt-4">{{ recipe.description }}</p>
+    <p mat-subheader>Ingredients:</p>
+    <mat-list>
+      @for(ingredient of recipe.ingredients; track ingredient) {
+      <mat-list-item>
+        <div class="row">
+          <div class="col-8">{{ ingredient.name }}</div>
+          <div class="col-2">{{ ingredient.amount }}</div>
+          <div class="col-2">{{ ingredient.units }}</div>
+        </div>
+      </mat-list-item>
+      }
+    </mat-list>
+  </mat-card-content>
+</mat-card>
+}
+@else {
+<p class="text-warning">There is no recipe with this ID</p>
+}
