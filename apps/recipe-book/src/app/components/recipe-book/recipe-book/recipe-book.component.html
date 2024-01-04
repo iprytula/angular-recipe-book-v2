@@ -1,7 +1,12 @@
-<div class="container mt-5">
+<div class="container mt-3">
   @if (loading$ | async; as loading) {
   <mat-spinner class="mx-auto"></mat-spinner>
   } @else if (!(error$ | async)) {
+  <div class="row mb-2">
+    <div class="col">
+      <a routerLink="new" mat-raised-button color="primary" class="ms-3">Add New Recipe</a>
+    </div>
+  </div>
   <div class="row">
     <div class="col-md-3">
       <app-recipe-list [recipes]="recipes$ | async"></app-recipe-list>

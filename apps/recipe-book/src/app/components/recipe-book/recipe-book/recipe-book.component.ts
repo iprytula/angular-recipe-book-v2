@@ -9,6 +9,7 @@ import { selectLoading, selectRecipes, selectRecipesError } from '../../../store
 import { Store } from '@ngrx/store';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { HttpErrorResponse } from '@angular/common/http';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-recipe-book',
@@ -20,7 +21,8 @@ import { HttpErrorResponse } from '@angular/common/http';
     RecipeListComponent,
     RecipeDetailComponent,
     RouterModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatButtonModule
   ],
 })
 export class RecipeBookComponent implements OnInit {

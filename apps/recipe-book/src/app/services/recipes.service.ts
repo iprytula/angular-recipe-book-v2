@@ -8,22 +8,23 @@ import { Recipe } from '../types/recipe.type';
 })
 export class RecipesService {
   baseUrl = 'https://recipe-book-4f550-default-rtdb.europe-west1.firebasedatabase.app';
+  recipesUrl = this.baseUrl + '/recipes.json';
 
   constructor(private http: HttpClient) { }
 
   getRecipes(): Observable<Recipe[]> {
-    const recipesUrl = this.baseUrl + '/recipes.json';
-
-    return this.http.get<{ [key: string]: Recipe }[]>(recipesUrl)
+    return this.http.get<Recipe[]>(this.recipesUrl)
       .pipe(
         map(
           response => {
-            const recipesObj = Object.values(response)[0];
-            const recipesArr = Object.values(recipesObj);
-
+            const recipesArr = Object.values(response);
             return recipesArr;
           }
         )
       )
+  }
+
+  addRecipe(recipe: Recipe): Observable<{ name: string }> {
+    return this.http.post<Recipe>(this.recipesUrl, recipe);
   }
 }
