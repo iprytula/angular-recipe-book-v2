@@ -27,6 +27,29 @@ export const shoppingListReducer = createReducer(
     shoppingListAdapter.setAll(ingredients, { ...state, loading: false })
   ),
   on(ShoppingListActions.loadFailure, (state, { error }) => ({ ...state, loading: false, error })),
+  on(ShoppingListActions.addToShoppingList, (state, { ingredients }) => {
+    const updatedIngredients = [...state.ids].reduce((acc, id) => {
+      const existingIngredient = state.entities[id];
+      const newIngredient = ingredients.find(ingredient => existingIngredient && ingredient.name === existingIngredient.name && ingredient.units === existingIngredient.units);
+
+      if (existingIngredient && newIngredient) {
+        const updatedAmount = existingIngredient.amount + newIngredient.amount;
+        acc.push({ ...existingIngredient, amount: updatedAmount } as Ingredient);
+      } else if (existingIngredient) {
+        acc.push(existingIngredient);
+      }
+      return acc;
+    }, [] as Ingredient[]);
+
+    ingredients.forEach(newIngredient => {
+      const exists = updatedIngredients.some(existingIngredient => existingIngredient.name === newIngredient.name && existingIngredient.units === newIngredient.units);
+      if (!exists) {
+        updatedIngredients.push(newIngredient as Ingredient);
+      }
+    });
+
+    return shoppingListAdapter.setAll(updatedIngredients, { ...state });
+  }),
   on(ShoppingListActions.removeFromShoppingList, (state, { ingredient }) =>
     shoppingListAdapter.removeOne(ingredient.name, { ...state })
   )

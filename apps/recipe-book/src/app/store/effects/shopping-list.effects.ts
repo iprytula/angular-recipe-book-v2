@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { of } from 'rxjs';
+import { EMPTY, Observable, of } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import { ShoppingListActions } from '../actions/shopping-list.actions';
 import { ShoppingListService } from '../../services/shopping-list.service';
+import { Router } from '@angular/router';
+import { Action } from '@ngrx/store';
 
 @Injectable()
 export class ShoppingListEffects {
@@ -11,7 +13,7 @@ export class ShoppingListEffects {
   constructor(
     private actions$: Actions,
     private shoppingListService: ShoppingListService,
-    // private router: Router
+    private router: Router
   ) {}
 
   loadShoppingList$ = createEffect(() =>
@@ -38,39 +40,14 @@ export class ShoppingListEffects {
     )
   );
 
-  // loadRecipes$ = createEffect(() =>
-  //   this.actions$.pipe(
-  //     ofType(RecipesActions.load),
-  //     switchMap(() =>
-  //       this.recipesService.getRecipes().pipe(
-  //         map((recipes) => RecipesActions.loadSuccess({ recipes })),
-  //         catchError((error) => of(RecipesActions.loadFailure({ error })))
-  //       )
-  //     )
-  //   )
-  // );
-
-  // addRecipe$ = createEffect(() =>
-  //   this.actions$.pipe(
-  //     ofType(RecipesActions.addRecipe),
-  //     switchMap((action) =>
-  //       this.recipesService.addRecipe(action.recipe).pipe(
-  //         map(() => RecipesActions.addRecipeSuccess({ recipe: action.recipe })),
-  //         catchError((error) => of(RecipesActions.addRecipeFailure({ error })))
-  //       )
-  //     )
-  //   )
-  // );
-
-  // addRecipeSuccess$ = createEffect((): Observable<Action> =>
-  //   this.actions$.pipe(
-  //     ofType(RecipesActions.addRecipeSuccess),
-  //     switchMap(({ recipe }) => {
-  //       this.router.navigate(['/recipes', recipe.id]);
-
-  //       return EMPTY;
-  //     })
-  //   )
-  // );
+  addedToShoppingList$ = createEffect((): Observable<Action> =>
+    this.actions$.pipe(
+      ofType(ShoppingListActions.addToShoppingList),
+      switchMap(() => {
+        this.router.navigate(['/shopping-list']);
+        return EMPTY;
+      })
+    )
+  );
 
 }

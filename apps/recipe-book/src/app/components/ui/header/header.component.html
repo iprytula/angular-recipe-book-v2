@@ -2,7 +2,7 @@
   <button class="d-sm-block d-md-none" mat-icon-button (click)="toggleSidenavClicked()">
     <mat-icon>menu</mat-icon>
   </button>
-  <a class="navbar-brand" href="/"><span>Recipe Book</span></a>
+  <a class="navbar-brand" routerLink="/"><span>Recipe Book</span></a>
   <nav class="nav ms-auto d-md-block d-none">
     @for (menuItem of headerMenu; track menuItem) {
     <a class="router-link me-3 text-white text-decoration-none" [routerLink]="menuItem.path" routerLinkActive="router-link-active">{{ menuItem.name }}</a>
