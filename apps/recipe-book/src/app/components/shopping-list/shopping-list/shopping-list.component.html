@@ -1,26 +1,30 @@
 <div class="container my-3">
   @if (shoppingList$ | async; as shoppingList) {
-  <mat-list>
+  <mat-selection-list>
     @for (ingredient of shoppingList; track ingredient) {
-    <mat-list-item>
-      <div class="row align-items-center">
-        <div class="col-6">
-          {{ ingredient.name }}
-        </div>
-        <div class="col-2">
-          {{ ingredient.amount }}
-        </div>
-        <div class="col-3">
-          {{ ingredient.units }}
-        </div>
-        <div class="col-1">
-          <button mat-icon-button
-            (click)="removeIngredient(ingredient)"><mat-icon>delete</mat-icon></button>
-        </div>
+    <div class="row">
+      <div class="col-11">
+        <mat-list-option #option>
+          <div class="row align-items-center" [ngClass]="{'selected-option': option.selected}">
+            <div class="col-6">
+              {{ ingredient.name }}
+            </div>
+            <div class="col-2">
+              {{ ingredient.amount }}
+            </div>
+            <div class="col-3">
+              {{ ingredient.units }}
+            </div>
+          </div>
+        </mat-list-option>
       </div>
-    </mat-list-item>
+      <div class="col-1">
+        <button mat-icon-button
+          (click)="removeIngredient(ingredient)"><mat-icon>delete</mat-icon></button>
+      </div>
+    </div>
     }
-  </mat-list>
+  </mat-selection-list>
   <div class="row">
     <div class="d-flex mt-4 pe-5 justify-content-end">
       <button mat-raised-button color="primary" (click)="saveShoppingList(shoppingList)">

@@ -27,4 +27,8 @@ export class RecipesService {
   addRecipe(recipe: Recipe): Observable<{ name: string }> {
     return this.http.post<Recipe>(this.recipesUrl, recipe);
   }
+
+  deleteRecipe(updatedRecipes: Recipe[]) {
+    return this.http.put(this.recipesUrl, updatedRecipes);
+  }
 }

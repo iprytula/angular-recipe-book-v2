@@ -51,4 +51,27 @@ export class RecipesEffects {
     )
   );
 
+  deleteREcipe$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(RecipesActions.deleteRecipe),
+      switchMap((action) =>
+        this.recipesService.deleteRecipe(action.updatedRecipes).pipe(
+          map(() => RecipesActions.deleteRecipeSuccess({ recipe: action.recipe })),
+          catchError((error) => of(RecipesActions.deleteRecipeFailure({ error })))
+        )
+      )
+    )
+  );
+
+  deleteRecipeSuccess$ = createEffect((): Observable<Action> =>
+    this.actions$.pipe(
+      ofType(RecipesActions.deleteRecipeSuccess),
+      switchMap(() => {
+        this.router.navigate(['/recipes']);
+
+        return EMPTY;
+      })
+    )
+  );
+
 }
