@@ -25,13 +25,18 @@
     </div>
     }
   </mat-selection-list>
-  <div class="row">
-    <div class="d-flex mt-4 pe-5 justify-content-end">
-      <button mat-raised-button color="primary" (click)="saveShoppingList(shoppingList)">
-        Save Shopping List
-      </button>
+
+    @if (shoppingList.length === 0) {
+    <div class="alert alert-warning" role="alert">Shopping list is empty, add some ingredients from recipes</div>
+    } @else {
+    <div class="row">
+      <div class="d-flex mt-4 pe-5 justify-content-end">
+        <button mat-raised-button color="primary" (click)="saveShoppingList(shoppingList)">
+          Save Shopping List
+        </button>
+      </div>
     </div>
-  </div>
+    }
   } @else if (loading$ | async) {
     <mat-spinner class="mx-auto"></mat-spinner>
   } @else if (error$ | async) {

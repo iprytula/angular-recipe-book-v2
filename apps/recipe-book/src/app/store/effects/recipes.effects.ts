@@ -51,11 +51,11 @@ export class RecipesEffects {
     )
   );
 
-  deleteREcipe$ = createEffect(() =>
+  deleteRecipe$ = createEffect(() =>
     this.actions$.pipe(
       ofType(RecipesActions.deleteRecipe),
       switchMap((action) =>
-        this.recipesService.deleteRecipe(action.updatedRecipes).pipe(
+        this.recipesService.updateRecipes(action.updatedRecipes).pipe(
           map(() => RecipesActions.deleteRecipeSuccess({ recipe: action.recipe })),
           catchError((error) => of(RecipesActions.deleteRecipeFailure({ error })))
         )
@@ -68,6 +68,29 @@ export class RecipesEffects {
       ofType(RecipesActions.deleteRecipeSuccess),
       switchMap(() => {
         this.router.navigate(['/recipes']);
+
+        return EMPTY;
+      })
+    )
+  );
+
+  editRecipe$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(RecipesActions.updateRecipe),
+      switchMap((action) =>
+        this.recipesService.updateRecipes(action.updatedRecipes).pipe(
+          map(() => RecipesActions.updateRecipeSuccess({ recipe: action.recipe })),
+          catchError((error) => of(RecipesActions.updateRecipeFailure({ error })))
+        )
+      )
+    )
+  );
+
+  updateRecipeSuccess$ = createEffect((): Observable<Action> =>
+    this.actions$.pipe(
+      ofType(RecipesActions.updateRecipeSuccess),
+      switchMap((action) => {
+        this.router.navigate(['/recipes', action.recipe.id]);
 
         return EMPTY;
       })

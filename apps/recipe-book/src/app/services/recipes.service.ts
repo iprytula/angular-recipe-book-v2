@@ -28,7 +28,7 @@ export class RecipesService {
     return this.http.post<Recipe>(this.recipesUrl, recipe);
   }
 
-  deleteRecipe(updatedRecipes: Recipe[]) {
+  updateRecipes(updatedRecipes: Recipe[]) {
     return this.http.put(this.recipesUrl, updatedRecipes);
   }
 }
