@@ -13,10 +13,11 @@ export const routes: Routes = [
       { path: '',  component: RecipeDetailPlaceholderComponent, pathMatch: 'full' },
       { path: 'new', component: RecipeFormComponent },
       { path: ':id', component: RecipeDetailComponent },
+      { path: 'edit/:id', component: RecipeFormComponent, data: { editMode: true } }
     ]
   },
   {
     path: 'shopping-list', loadComponent: () => import('./components/shopping-list/shopping-list/shopping-list.component')
       .then(c => c.ShoppingListComponent), resolve: { shoppingList: ShoppingListResolver }
-  }
+  },
 ];

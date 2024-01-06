@@ -1,0 +1,12 @@
+.selected-option {
+  position: relative;
+
+  &::after {
+    position: absolute;
+    display: block;
+    height: 2px;
+    width: 100%;
+    background-color: black;
+    content: '';
+  }
+}

@@ -41,6 +41,11 @@ export const recipesReducer = createReducer(
       addingRecipe: false
     };
   }),
-
-  on(RecipesActions.addRecipeFailure, (state, { error }) => ({ ...state, addingRecipe: false, error }))
+  on(RecipesActions.addRecipeFailure, (state, { error }) => ({ ...state, addingRecipe: false, error })),
+  on(RecipesActions.deleteRecipeSuccess, (state, { recipe }) =>
+    recipesAdapter.removeOne(recipe.id, { ...state })
+  ),
+  on(RecipesActions.updateRecipeSuccess, (state, { recipe }) =>
+    recipesAdapter.updateOne({ id: recipe.id, changes: recipe }, { ...state })
+  )
 );

@@ -1,33 +1,42 @@
 <div class="container my-3">
   @if (shoppingList$ | async; as shoppingList) {
-  <mat-list>
+  <mat-selection-list>
     @for (ingredient of shoppingList; track ingredient) {
-    <mat-list-item>
-      <div class="row align-items-center">
-        <div class="col-6">
-          {{ ingredient.name }}
-        </div>
-        <div class="col-2">
-          {{ ingredient.amount }}
-        </div>
-        <div class="col-3">
-          {{ ingredient.units }}
-        </div>
-        <div class="col-1">
-          <button mat-icon-button
-            (click)="removeIngredient(ingredient)"><mat-icon>delete</mat-icon></button>
-        </div>
+    <div class="row">
+      <div class="col-11">
+        <mat-list-option #option>
+          <div class="row align-items-center" [ngClass]="{'selected-option': option.selected}">
+            <div class="col-6">
+              {{ ingredient.name }}
+            </div>
+            <div class="col-2">
+              {{ ingredient.amount }}
+            </div>
+            <div class="col-3">
+              {{ ingredient.units }}
+            </div>
+          </div>
+        </mat-list-option>
       </div>
-    </mat-list-item>
-    }
-  </mat-list>
-  <div class="row">
-    <div class="d-flex mt-4 pe-5 justify-content-end">
-      <button mat-raised-button color="primary" (click)="saveShoppingList(shoppingList)">
-        Save Shopping List
-      </button>
+      <div class="col-1">
+        <button mat-icon-button
+          (click)="removeIngredient(ingredient)"><mat-icon>delete</mat-icon></button>
+      </div>
     </div>
-  </div>
+    }
+  </mat-selection-list>
+
+    @if (shoppingList.length === 0) {
+    <div class="alert alert-warning" role="alert">Shopping list is empty, add some ingredients from recipes</div>
+    } @else {
+    <div class="row">
+      <div class="d-flex mt-4 pe-5 justify-content-end">
+        <button mat-raised-button color="primary" (click)="saveShoppingList(shoppingList)">
+          Save Shopping List
+        </button>
+      </div>
+    </div>
+    }
   } @else if (loading$ | async) {
     <mat-spinner class="mx-auto"></mat-spinner>
   } @else if (error$ | async) {

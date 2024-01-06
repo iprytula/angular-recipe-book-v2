@@ -10,6 +10,12 @@ export const RecipesActions = createActionGroup({
     loadFailure: props<{ error: HttpErrorResponse }>(),
     addRecipe: props<{ recipe: Recipe }>(),
     addRecipeSuccess: props<{ recipe: Recipe }>(),
-    addRecipeFailure: props<{ error: HttpErrorResponse }>()
+    addRecipeFailure: props<{ error: HttpErrorResponse }>(),
+    updateRecipe: props<{ recipe: Recipe, updatedRecipes: Recipe[] }>(),
+    updateRecipeSuccess: props<{ recipe: Recipe }>(),
+    updateRecipeFailure: props<{ error: HttpErrorResponse }>(),
+    deleteRecipe: props<{ recipe: Recipe, updatedRecipes: Recipe[] }>(),
+    deleteRecipeSuccess: props<{ recipe: Recipe }>(),
+    deleteRecipeFailure: props<{ error: HttpErrorResponse }>()
   }
 });
