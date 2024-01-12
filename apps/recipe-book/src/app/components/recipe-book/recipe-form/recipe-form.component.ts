@@ -6,7 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { Store } from '@ngrx/store';
-import { Recipe } from '../../../types/recipe.type';
+import { Recipe } from '../../../interfaces/recipe.interface';
 import { RecipesActions } from '../../../store/actions/recipes.actions';
 import { Observable, take } from 'rxjs';
 import { selectRecipeById, selectRecipes } from '../../../store/selectors/recipes.selectors';

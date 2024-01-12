@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-xs-12 col-md-4 mx-auto mt-5">
+    <mat-tab-group>
+      <mat-tab label="Sign In">
+        <app-auth></app-auth>
+      </mat-tab>
+      <mat-tab label="Sign Up">
+        <app-auth [signUpMode]="true"></app-auth>
+      </mat-tab>
+    </mat-tab-group>
+    @if (error$) {
+    <div class="row mt-3">
+      <div class="alert alert-danger" role="alert">
+        Oops, something went wrong
+      </div>
+    </div>
+    }
+  </div>
+</div>

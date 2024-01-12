@@ -1,7 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import { createEntityAdapter, EntityState } from '@ngrx/entity';
 import { RecipesActions } from '../actions/recipes.actions';
-import { Recipe } from '../../types/recipe.type';
+import { Recipe } from '../../interfaces/recipe.interface';
 import { HttpErrorResponse } from '@angular/common/http';
 
 export const recipesFeatureKey = 'recipes';

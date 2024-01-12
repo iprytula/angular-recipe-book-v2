@@ -1,0 +1,49 @@
+<form class="auth-form" [formGroup]="authForm" (submit)="onSubmit()">
+  <div class="row">
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input formControlName="email" type="email" matInput placeholder="Ex. pat@example.com">
+      @if (authForm.get('email')?.getError('required')) {
+      <mat-error>This field is required.</mat-error>
+      }
+      @if (authForm.get('email')?.getError('email')) {
+      <mat-error>provide a valid email address.</mat-error>
+      }
+    </mat-form-field>
+  </div>
+  <div class="row">
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input formControlName="password" type="password" matInput>
+      @if (authForm.get('password')?.getError('minlength')) {
+      <mat-error>Passwords must be minimum 6 characters.</mat-error>
+      }
+      @if (authForm.get('password')?.getError('required')) {
+      <mat-error>This field is required.</mat-error>
+      }
+    </mat-form-field>
+  </div>
+  @if(signUpMode) {
+  <div class="row">
+    <mat-form-field>
+      <mat-label>Repeat Password</mat-label>
+      <input formControlName="passwordRepeat" type="password" matInput>
+      @if (authForm.get('passwordRepeat')?.getError('passwordMismatch')) {
+      <mat-error>Passwords do not match.</mat-error>
+      }
+      @if (authForm.get('passwordRepeat')?.getError('minlength')) {
+      <mat-error>Passwords must be minimum 6 characters.</mat-error>
+      }
+      @if (authForm.get('passwordRepeat')?.getError('required')) {
+      <mat-error>This field is required.</mat-error>
+      }
+    </mat-form-field>
+  </div>
+  }
+  <div class="row">
+    <div class="col">
+      <button [disabled]="authForm.invalid" class="float-end" mat-raised-button color="primary" type="submit">{{ buttonText }}</button>
+    </div>
+  </div>
+</form>
+

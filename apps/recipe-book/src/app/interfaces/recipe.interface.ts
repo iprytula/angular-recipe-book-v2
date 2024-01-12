@@ -1,6 +1,6 @@
-import { Ingredient } from "./ingredient.type"
+import { Ingredient } from "./ingredient.interface"
 
-export type Recipe = {
+export interface Recipe {
   id: number
   name: string
   photoUrl: string

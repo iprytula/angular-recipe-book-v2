@@ -4,7 +4,7 @@ import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { HeaderComponent } from './components/ui/header/header.component';
-import { MenuItem } from './types/menu-item.type';
+import { MenuItem } from './interfaces/menu-item.interface';
 import { menu } from './const/menu.const';
 import { MatListModule } from '@angular/material/list';
 

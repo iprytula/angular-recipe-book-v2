@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Recipe } from '../../../types/recipe.type';
+import { Recipe } from '../../../interfaces/recipe.interface';
 import { RecipeListComponent } from "../recipe-list/recipe-list.component";
 import { RecipeDetailComponent } from "../recipe-detail/recipe-detail.component";
 import { RouterModule } from '@angular/router';

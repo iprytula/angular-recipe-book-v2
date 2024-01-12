@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { RecipeBookComponent } from './components/recipe-book/recipe-book/recipe-book.component';
 import { RecipeResolver } from './resolvers/recipes.resolver';
 import { ShoppingListResolver } from './resolvers/shopping-list.resolver';
+import { AuthPageComponent } from './components/auth/auth-page/auth-page.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/recipes', pathMatch: 'full' },
@@ -18,4 +19,8 @@ export const routes: Routes = [
     ).then(c => c.ShoppingListComponent),
     resolve: { shoppingList: ShoppingListResolver }
   },
+  {
+    path: 'auth',
+    component: AuthPageComponent
+  }
 ];

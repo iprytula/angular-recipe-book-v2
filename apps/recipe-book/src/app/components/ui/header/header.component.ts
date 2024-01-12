@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MenuItem } from '../../../types/menu-item.type';
+import { MenuItem } from '../../../interfaces/menu-item.interface';
 import { menu } from '../../../const/menu.const';
 import { RouterModule } from '@angular/router';
 

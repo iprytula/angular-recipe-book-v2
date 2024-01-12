@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Recipe } from '../../../types/recipe.type';
+import { Recipe } from '../../../interfaces/recipe.interface';
 import { MatListModule } from '@angular/material/list';
 import { RouterModule } from '@angular/router';
 

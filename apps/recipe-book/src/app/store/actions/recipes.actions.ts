@@ -1,5 +1,5 @@
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
-import { Recipe } from '../../types/recipe.type';
+import { Recipe } from '../../interfaces/recipe.interface';
 import { HttpErrorResponse } from '@angular/common/http';
 
 export const RecipesActions = createActionGroup({
