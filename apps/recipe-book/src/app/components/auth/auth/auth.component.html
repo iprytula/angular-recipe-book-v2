@@ -23,7 +23,7 @@
       }
     </mat-form-field>
   </div>
-  @if(signUpMode) {
+  @if(isSignUpMode) {
   <div class="row">
     <mat-form-field>
       <mat-label>Repeat Password</mat-label>
@@ -42,7 +42,13 @@
   }
   <div class="row">
     <div class="col">
-      <button [disabled]="authForm.invalid" class="float-end" mat-raised-button color="primary" type="submit">{{ buttonText }}</button>
+      <button [disabled]="authForm.invalid || (loading$ | async)" class="float-end" mat-raised-button color="primary" type="submit">
+        @if (loading$ | async) {
+        <mat-spinner diameter="25"></mat-spinner>
+        } @else {
+        {{ buttonText }}
+        }
+        </button>
     </div>
   </div>
 </form>

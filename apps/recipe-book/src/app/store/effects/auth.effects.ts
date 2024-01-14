@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { catchError, map, of, switchMap } from "rxjs";
+import { Action } from "@ngrx/store";
+import { EMPTY, Observable, catchError, map, of, switchMap } from "rxjs";
 import { AuthService } from "../../services/auth.service";
 import { AuthActions } from "../actions/auth.actions";
 
@@ -12,7 +13,7 @@ export class AuthEffects {
     private authService: AuthService
   ) {}
 
-  signIn$ = createEffect(() =>
+  signUp$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AuthActions.signUp),
       switchMap(({ email, password }) =>
@@ -22,6 +23,40 @@ export class AuthEffects {
         )
       )
     )
-  )
+  );
+
+  signIn$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActions.signIn),
+      switchMap(({ email, password }) =>
+        this.authService.signIn(email, password).pipe(
+          map((authResponse) => AuthActions.signInSuccess({ authResponse })),
+          catchError(error => of(AuthActions.signInFailure({ error })))
+        )
+      )
+    )
+  );
+
+  signUpSuccess$ = createEffect((): Observable<Action> =>
+    this.actions$.pipe(
+      ofType(AuthActions.signUpSuccess),
+      switchMap((action) => {
+        localStorage.setItem('auth', JSON.stringify(action.authResponse));
+
+        return EMPTY;
+      })
+    )
+  );
+
+  signInSuccess$ = createEffect((): Observable<Action> =>
+    this.actions$.pipe(
+      ofType(AuthActions.signInSuccess),
+      switchMap((action) => {
+        localStorage.setItem('auth', JSON.stringify(action.authResponse));
+
+        return EMPTY;
+      })
+    )
+  );
 
 }

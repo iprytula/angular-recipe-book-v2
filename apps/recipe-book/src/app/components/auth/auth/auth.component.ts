@@ -7,6 +7,8 @@ import { MatInputModule } from '@angular/material/input';
 import { Store } from '@ngrx/store';
 import { AuthActions } from '../../../store/actions/auth.actions';
 import { Observable } from 'rxjs';
+import { selectIsLoading } from '../../../store/selectors/auth.selectors';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-auth',
@@ -16,16 +18,17 @@ import { Observable } from 'rxjs';
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
-    MatButtonModule
+    MatButtonModule,
+    MatProgressSpinnerModule
   ],
   templateUrl: './auth.component.html',
   styleUrl: './auth.component.scss',
 })
 export class AuthComponent implements OnInit {
-  @Input() signUpMode = false;
-  buttonText = this.signUpMode ? 'Sign Up' : 'Sign In';
+  @Input() isSignUpMode = false;
+  buttonText = this.isSignUpMode ? 'Sign Up' : 'Sign In';
   authForm!: FormGroup;
-  error$!: Observable<unknown>;
+  loading$!: Observable<boolean>;
 
   constructor(
     private fb: FormBuilder,
@@ -33,24 +36,28 @@ export class AuthComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.initAuthForm();
+    this.loading$ = this.store.select(selectIsLoading);
+  }
+
+  initAuthForm() {
     this.authForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       passwordRepeat: ['', [
-        this.signUpMode ? Validators.required : Validators.nullValidator,
+        this.isSignUpMode ? Validators.required : Validators.nullValidator,
         Validators.minLength(6)]
       ],
     }, {
-      validators: this.signUpMode ? this.passwordMatchValidator('password', 'passwordRepeat') : null
+      validators: this.isSignUpMode ? this.passwordMatchValidator('password', 'passwordRepeat') : null
     });
-
   }
 
   onSubmit() {
     if (this.authForm.valid) {
       const { email, password } = this.authForm.value;
 
-      if (this.signUpMode) {
+      if (this.isSignUpMode) {
         this.store.dispatch(AuthActions.signUp({ email, password }));
       } else {
         this.store.dispatch(AuthActions.signIn({ email, password }));
@@ -58,7 +65,7 @@ export class AuthComponent implements OnInit {
     }
   }
 
-  passwordMatchValidator(controlName: string, matchingControlName: string): ValidatorFn {
+  private passwordMatchValidator(controlName: string, matchingControlName: string): ValidatorFn {
     return (formGroup: AbstractControl): ValidationErrors | null => {
       const control = formGroup.get(controlName);
       const matchingControl = formGroup.get(matchingControlName);
@@ -80,5 +87,4 @@ export class AuthComponent implements OnInit {
       return null;
     };
   }
-
 }
