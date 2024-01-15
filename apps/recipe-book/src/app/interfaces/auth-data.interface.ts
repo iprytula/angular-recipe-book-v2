@@ -1,7 +1,8 @@
-export interface AuthResponse {
+export interface AuthData {
   idToken: string,
   email: string,
   refreshToken: string,
   expiresIn: string,
-  localId: string
+  localId: string,
+  registered?: boolean
 }

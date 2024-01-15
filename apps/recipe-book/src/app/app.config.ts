@@ -1,4 +1,4 @@
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { ApplicationConfig, isDevMode } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter } from '@angular/router';
@@ -9,6 +9,7 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { routes } from './app.routes';
 import { recipesFeatureKey, recipesReducer } from './store/reducers/recipes.reducer';
 
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { AuthEffects } from './store/effects/auth.effects';
 import { RecipesEffects } from './store/effects/recipes.effects';
 import { ShoppingListEffects } from './store/effects/shopping-list.effects';
@@ -23,9 +24,9 @@ export const appConfig: ApplicationConfig = {
       [authFeatureKey]: authReducer
     }),
     provideStoreDevtools({ logOnly: !isDevMode() }),
-    provideEffects([ RecipesEffects, ShoppingListEffects, AuthEffects ]),
+    provideEffects([RecipesEffects, ShoppingListEffects, AuthEffects]),
     provideRouter(routes),
     provideAnimations(),
-    provideHttpClient()
+    provideHttpClient(withInterceptors([AuthInterceptor])),
   ],
 };

@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 import { menu } from '../../../const/menu.const';
 import { MenuItem } from '../../../interfaces/menu-item.interface';
 import { selectIsAuthenticated } from '../../../store/selectors/auth.selectors';
+import { AuthActions } from '../../../store/actions/auth.actions';
 
 @Component({
   selector: 'app-header',
@@ -31,5 +32,9 @@ export class HeaderComponent implements OnInit {
 
   toggleSidenavClicked() {
     this.toggleSidenavEvent.emit();
+  }
+
+  onLogout() {
+    this.store.dispatch(AuthActions.logOut());
   }
 }
