@@ -4,8 +4,19 @@
   </button>
   <a class="navbar-brand" routerLink="/"><span>Recipe Book</span></a>
   <nav class="nav ms-auto d-md-block d-none">
+    @if (isAuthenticated$ | async) {
     @for (menuItem of headerMenu; track menuItem) {
-    <a class="router-link me-3 text-white text-decoration-none" [routerLink]="menuItem.path" routerLinkActive="router-link-active">{{ menuItem.name }}</a>
+    <a *ngIf="menuItem.showIfAuthenticated" class="router-link me-3 text-white text-decoration-none"
+      [routerLink]="menuItem.path" routerLinkActive="router-link-active">{{ menuItem.name }}</a>
+    }
+    } @else {
+    @for (menuItem of headerMenu; track menuItem) {
+    <a *ngIf="!menuItem.showIfAuthenticated" class="router-link me-3 text-white text-decoration-none"
+      [routerLink]="menuItem.path" routerLinkActive="router-link-active">{{ menuItem.name }}</a>
+    }
+    }
+    @if(isAuthenticated$ | async) {
+    <button mat-raised-button (click)="onLogout()">Logout</button>
     }
   </nav>
 </mat-toolbar>

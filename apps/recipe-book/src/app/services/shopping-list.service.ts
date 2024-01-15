@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Ingredient } from '../types/ingredient.type';
+import { Ingredient } from '../interfaces/ingredient.interface';
 import { Observable, map } from 'rxjs';
 
 @Injectable({

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Ingredient } from '../../../types/ingredient.type';
+import { Ingredient } from '../../../interfaces/ingredient.interface';
 import { selectLoading, selectShoppingList, selectShoppingListError } from '../../../store/selectors/shopping-list.selectors';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';

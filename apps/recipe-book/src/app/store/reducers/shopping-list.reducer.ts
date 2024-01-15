@@ -1,7 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import { createEntityAdapter, EntityState } from '@ngrx/entity';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Ingredient } from '../../types/ingredient.type';
+import { Ingredient } from '../../interfaces/ingredient.interface';
 import { ShoppingListActions } from '../actions/shopping-list.actions';
 
 export const shoppingListFeatureKey = 'shoppingList';

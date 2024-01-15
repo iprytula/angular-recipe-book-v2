@@ -1,6 +1,6 @@
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Ingredient } from '../../types/ingredient.type';
+import { Ingredient } from '../../interfaces/ingredient.interface';
 
 export const ShoppingListActions = createActionGroup({
   source: 'ShoppingList',

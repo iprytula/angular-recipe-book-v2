@@ -2,9 +2,21 @@
   <mat-drawer #drawer mode="side">
     <nav class="sidenav">
       <mat-nav-list>
+        @if (isAuthenticated$ | async) {
+        <mat-list-item class="mb-3">
+          <button mat-raised-button color="primary" (click)="onLogout()">Logout</button>
+        </mat-list-item>
         @for (menuItem of sidenavMenu; track menuItem) {
-        <a mat-list-item class="router-link text-decoration-none" [routerLink]="menuItem.path"
-          routerLinkActive="router-link-active">{{ menuItem.name }}</a>
+        <a mat-list-item *ngIf="menuItem.showIfAuthenticated" class="router-link text-decoration-none"
+          [routerLink]="menuItem.path" routerLinkActive="router-link-active" routerLinkActive="router-link-active">{{
+          menuItem.name }}</a>
+        }
+        } @else {
+        @for (menuItem of sidenavMenu; track menuItem) {
+        <a mat-list-item *ngIf="!menuItem.showIfAuthenticated" class="router-link text-decoration-none"
+          [routerLink]="menuItem.path" routerLinkActive="router-link-active" routerLinkActive="router-link-active">{{
+          menuItem.name }}</a>
+        }
         }
       </mat-nav-list>
     </nav>

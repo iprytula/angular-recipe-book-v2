@@ -1,23 +1,27 @@
 import { Routes } from '@angular/router';
 import { RecipeBookComponent } from './components/recipe-book/recipe-book/recipe-book.component';
-import { RecipeDetailComponent } from './components/recipe-book/recipe-detail/recipe-detail.component';
-import { RecipeDetailPlaceholderComponent } from './components/recipe-book/recipe-detail-placeholder/recipe-detail-placeholder.component';
 import { RecipeResolver } from './resolvers/recipes.resolver';
-import { RecipeFormComponent } from './components/recipe-book/recipe-form/recipe-form.component';
 import { ShoppingListResolver } from './resolvers/shopping-list.resolver';
+import { AuthPageComponent } from './components/auth/auth-page/auth-page.component';
+import { AuthGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/recipes', pathMatch: 'full' },
   {
-    path: 'recipes', component: RecipeBookComponent, resolve: { recipes: RecipeResolver } , children: [
-      { path: '',  component: RecipeDetailPlaceholderComponent, pathMatch: 'full' },
-      { path: 'new', component: RecipeFormComponent },
-      { path: ':id', component: RecipeDetailComponent },
-      { path: 'edit/:id', component: RecipeFormComponent, data: { editMode: true } }
-    ]
+    path: 'recipes',
+    component: RecipeBookComponent,
+    resolve: { recipes: RecipeResolver },
+    loadChildren: () => import('./components/recipe-book/recipes.routes')
+      .then(r => r.recipesRoutes),
+    canActivate: [AuthGuard]
   },
   {
-    path: 'shopping-list', loadComponent: () => import('./components/shopping-list/shopping-list/shopping-list.component')
-      .then(c => c.ShoppingListComponent), resolve: { shoppingList: ShoppingListResolver }
+    path: 'shopping-list',
+    loadComponent: () => import(
+      './components/shopping-list/shopping-list/shopping-list.component'
+    ).then(c => c.ShoppingListComponent),
+    resolve: { shoppingList: ShoppingListResolver },
+    canActivate: [AuthGuard]
   },
+  { path: 'auth', component: AuthPageComponent }
 ];

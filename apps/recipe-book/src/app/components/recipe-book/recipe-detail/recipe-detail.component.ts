@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Recipe } from '../../../types/recipe.type';
+import { Recipe } from '../../../interfaces/recipe.interface';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -10,7 +10,7 @@ import { Observable, take } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { selectRecipeById, selectRecipes } from '../../../store/selectors/recipes.selectors';
 import { MatListModule } from '@angular/material/list';
-import { Ingredient } from '../../../types/ingredient.type';
+import { Ingredient } from '../../../interfaces/ingredient.interface';
 import { ShoppingListActions } from '../../../store/actions/shopping-list.actions';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteRecipeDialogComponent } from '../delete-recipe-dialog/delete-recipe-dialog.component';
