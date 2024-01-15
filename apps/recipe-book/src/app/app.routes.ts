@@ -4,7 +4,6 @@ import { RecipeResolver } from './resolvers/recipes.resolver';
 import { ShoppingListResolver } from './resolvers/shopping-list.resolver';
 import { AuthPageComponent } from './components/auth/auth-page/auth-page.component';
 import { AuthGuard } from './guards/auth.guard';
-import { UnauthorizedGuard } from './guards/unauthorized.guard';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/recipes', pathMatch: 'full' },
@@ -12,8 +11,9 @@ export const routes: Routes = [
     path: 'recipes',
     component: RecipeBookComponent,
     resolve: { recipes: RecipeResolver },
-    loadChildren: () => import('./components/recipe-book/recipes.routes').then(r => r.recipesRoutes),
-    canActivate: [ AuthGuard ]
+    loadChildren: () => import('./components/recipe-book/recipes.routes')
+      .then(r => r.recipesRoutes),
+    canActivate: [AuthGuard]
   },
   {
     path: 'shopping-list',
@@ -21,11 +21,7 @@ export const routes: Routes = [
       './components/shopping-list/shopping-list/shopping-list.component'
     ).then(c => c.ShoppingListComponent),
     resolve: { shoppingList: ShoppingListResolver },
-    canActivate: [ AuthGuard ]
+    canActivate: [AuthGuard]
   },
-  {
-    path: 'auth',
-    component: AuthPageComponent,
-    canActivate: [ UnauthorizedGuard ]
-  }
+  { path: 'auth', component: AuthPageComponent }
 ];
